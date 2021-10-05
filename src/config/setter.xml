@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="dao" class="di.basic.setter.MemberDAO"/>
+	<bean id="insa" class="di.basic.setter.InsaImpl">
+	<!-- setter메소드를 이용해서 dao객체를 injection해야 하므로 property엘리먼트를 추가	
+		 name????? 
+		 <constructor-arg>가 없으면 기본생성자 호출한다. 
+		 name속성은 setter메소드에서 set을 빼고 첫글자를 소문자로 변경한 이름 (객체의 property명) -->
+	<property name="dao" ref="dao"/>
+	</bean>
+	
+	<bean id="logic" class="di.setter01.LogicImpl" />
+	<bean id="cloud" class="di.setter01.CloudLogicImpl" />
+	<bean id="service" class="di.setter01.MyServiceImpl">
+		<property name="name" value="장동건"/>
+		<property name="msg" value="안녕"/>
+		<property name="logicObj" ref="logic"/>
+	</bean>
+		
+	<bean id="dice" class="di.setter02.Dice" />
+	<!-- <constructor-arg>가 없으면 무조건 기본생성자를 호출
+		 Player player = new Player();
+		 player.setD(dice)
+	  -->
+	<bean id="player" class="di.setter02.Player" >
+		<property name="d" ref="dice"/>
+	</bean>
+	
+	<bean id="dao2" class="di.setter03.MysqlArticleDAO" /> 
+	<!-- <bean id="dao2" class="di.setter03.OracleArticleDAO" /> -->
+	<bean id="mgr" class="di.setter03.WriteArticleMgr" >
+		<property name="articleDAO" ref="dao2"/>
+	</bean>
+	
+	
+	 <bean id="tv" class="di.setter.book.exam.SamsungTV" > 
+	 <property name="speaker" ref="speaker"/>
+	 </bean>
+	<!--  <bean id="tv" class="di.setter.book.exam.LgTV" > 
+	 <property name="speaker" ref="speaker"/>
+	 </bean> -->
+	
+	
+	 <bean id="speaker" class="di.setter.book.exam.AppleSpeaker" /> 
+	<!-- <bean id="speaker" class="di.constructor.book.exam.SonySpeaker" /> -->
+	
+	
+	
+		
+</beans>
