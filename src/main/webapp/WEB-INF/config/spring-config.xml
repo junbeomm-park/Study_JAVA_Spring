@@ -42,8 +42,32 @@
 	</beans:bean>
 	<!-- =================================================================================================================== -->
 	
+	<!-- ========================Mybatis 설정 =============================================================================== -->
+	
+	<!-- 1. Connection Pool등록 -->
+	<beans:bean id="ds" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+		<beans:property name="jndiName" value="jdbc/myspring"/>
+		<beans:property name="resourceRef" value="true"/>
+	</beans:bean>
+	
+	<!-- 2. Spring에서 MyBatis의 핵심클래스인 SqlSession사용할 수 있도록 하기 위해서 등록
+			SqlSession객체를 만들어서 리턴하는 Factory객체  -->
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="ds"/>
+		<beans:property name="configLocation" value="/WEB-INF/config/mybatis-config.xml"/>
+	</beans:bean>
+	
+	<!-- 3. MyBatis에서 sql문을 처리하기 위한 핵심 클래스 (SqlSession객체) 생성 -->
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg ref="sqlSessionFactory" />
+	
+	</beans:bean>
+	
+	
+	<!-- =================================================================================================================== -->
 	<context:component-scan base-package="com.sds.erp" />
 	<context:component-scan base-package="main"/>
+	<context:component-scan base-package="multi"/>
 	
 	
 	
