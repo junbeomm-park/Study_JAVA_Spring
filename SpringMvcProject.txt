@@ -1,0 +1,55 @@
+[작업순서]
+1. spring mvc project 추가하기
+2. Controller만들기
+3. spring mvc project 요청하기
+4. web.xml수정해서 spring 설정파일의 위치와 파일명 변경
+5. tiles프레임워크를 연결해서 화면 레이아웃 설정
+
+
+
+[spring mvc 프로젝트 만들기]
+  1. pom.xml 파일의 <properties> 엘리먼트에서 자바와 스프링 버전을 변경
+	<properties>
+		<java-version>1.8</java-version>
+		<org.springframework-version>4.2.4.RELEASE</org.springframework-version>
+		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<org.slf4j-version>1.6.6</org.slf4j-version>
+	</properties>
+	
+  2. servlet-api 버전 변경
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		
+  3. 프로젝트의 속성
+  	 - project facets버전 변경
+  	   java: 1.8, web: 3.0
+  	 - compiler버전 : 1.8로 변경
+  
+  4. 프로젝트에 에러가 없는지 확인
+  
+[controller만들기]
+0. spring설정파일에 <context:component-scan>으로 컨트롤러를 추가할 패키지를 추가
+
+1. src에 패키지를 만들고 컨트롤러 추가
+	- @Controller 어노테이션기호로 선언
+
+2. 요청할때 실행될 메소드 정의
+	- @RequestMapping으로 실행될 요청 path를 등록
+	- return될 객체를 명시
+	
+3. src/main/webapp/WEB-INF폴더 아래 view를 만들기
+
+
+
+
+
+
+
+
+
+
+  	 
