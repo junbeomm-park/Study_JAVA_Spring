@@ -9,4 +9,7 @@
 	<select id="list" resultType="emp">
 		select * from member
 	</select>
+	<select id="idcheck" resultType="emp" parameterType="String">
+		select * from member where id = #{id}
+	</select>
 </mapper>
