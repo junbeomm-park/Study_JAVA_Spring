@@ -15,6 +15,7 @@ public interface BoardService {
 	
 	
 	List<BoardVO> findByCategory(String category);
+	List<BoardVO> getMemeberlist();
 	
 }
 

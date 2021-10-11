@@ -2,18 +2,22 @@ package multi.erp.board;
 
 import java.util.List;
 
+import multi.erp.emp.EmpVO;
+
 public interface BoardDAO {
-	//�Խñ���ü�����ȸ
+	//게시글전체목록조회
 	List<BoardVO> boardList();
-	//�Խñ۵���ϱ�
+	//게시글등록하기
 	int insert(BoardVO board);
 	List<BoardVO> searchList(String search);
 	List<BoardVO> searchList(String tag,String search);
 	List<BoardVO> pageList();
-	//�Խñ���ȸ
+	//게시글조회
 	BoardVO read(String board_no);
-	//�Խñۼ���
+	//게시글수정
 	int update(BoardVO board);
-	//�Խñۻ���
+	//게시글삭제
 	int delete(String board_no);
+	//카테고리별 검색
+	List<BoardVO> categorySearch(String category);
 }
