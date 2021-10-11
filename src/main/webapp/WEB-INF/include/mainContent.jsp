@@ -1,3 +1,5 @@
+<%@page import="multi.erp.board.BoardVO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,9 +23,26 @@
 }
 
 </style>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//id속성이 boardCategory로 정의된 li에 익명의 함수를 적용
+		$("#boardCategory>li").each(function(){
+			$(this).click(function(){
+				
+				$("#boardCategory>li").removeAttr("class");//id가 boardCetegory인 컴포넌트의 하위 엘리먼트 li태그의 모든 class속성을 지운다.
+				$(this).attr("class","active");//클릭되는 엘리먼트가 선택되도록
+				
+			})
+		})
+	});
+
+</script>
 <title>Insert title here</title>
 </head>
 <body>
+<% ArrayList<BoardVO> boardlist = (ArrayList<BoardVO>) request.getAttribute("boardlist");
+	int size = boardlist.size();
+%>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-7">
@@ -80,33 +99,22 @@
 					style="border-color: #edeef1; height: 300px; width: 450px">
 					<div class="panel-footer">사내소식</div>
 					<div class="panel-body">
-						<ul class="nav nav-tabs">
+						<ul class="nav nav-tabs" id="boardCategory">
 							<li class="active"><a href="#">최근게시판</a></li>
 							<li><a href="#">업무공지</a></li>
 							<li><a href="#">경조사</a></li>
 						</ul>
 						<div id="boardMain" style="padding-top: 20px; padding-left: 10px">
 							<table>
+								<%for(int i=0;i<size;i++) {
+									BoardVO board = boardlist.get(i);
+								%>
+							
 								<tr>
-									<td class="boardContent" style="">mini프로젝트 개최</td>
-									<td class="boardDate" style="">2020.02.10</td>
+									<td class="boardContent" style=""><%= board.getTitle() %></td>
+									<td class="boardDate" style=""><%= board.getWrite_date() %></td>
 								</tr>
-								<tr>
-									<td class="boardContent" style="">kimsaemERP ver2.0출시</td>
-									<td class="boardDate" style="">2020.01.29</td>
-								</tr>
-								<tr class="boardRow">
-									<td class="boardContent">사옥 이전날짜 확정</td>
-									<td class="boardDate">2020.04.11</td>
-								</tr>
-								<tr class="boardRow">
-									<td class="boardContent">보안의 날 참석 인원 확정</td>
-									<td class="boardDate">2020.08.11</td>
-								</tr>
-								<!-- <tr class="boardRow">
-									<td class="boardContent" >2차 프로젝트 발표 날짜 확정 통보</td>
-									<td class="boardDate">2018.07.10</td>
-								</tr> -->
+								<% }%>	
 							</table>
 						</div>
 					</div>

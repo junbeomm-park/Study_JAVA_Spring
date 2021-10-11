@@ -11,6 +11,13 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+  	$(document).ready(function(){
+  		$("#id").on("keyup", function(){
+  			location.href="/erp/emp/idcheck.do?id="+$("#id").val();
+  		})
+  	});
+  </script>
 </head>
 <body>
 	<div class="container">
@@ -50,10 +57,10 @@
 						<div class="col-sm-3">
 							<input type="text" id="id" name="id"
 								placeholder="사번" class="form-control" 
-								minlength="4" required onkeyup="runAjax()">
+								minlength="4" required >
 							
 						</div>
-						<span id="checkVal"></span>
+						<span id="checkVal">${result}</span>
 					</div>
 
 
