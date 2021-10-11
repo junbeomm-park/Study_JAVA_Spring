@@ -23,4 +23,16 @@ public class EmpDAOImpl implements EmpDAO {
 		return sqlSession.selectList("erp.emp.list");
 	}
 
+	@Override
+	public boolean idCheck(String id) {
+		boolean result = false;
+		//primary key를 비교하는 sql문은 결과가 레코드 하나
+		//=> SqlSession의 메소드 => selectOne
+		EmpVO user = sqlSession.selectOne("erp.emp.idcheck", id);
+		if(user!=null) {
+			result = true;//기존 id가 있으면 true
+		}
+		return result; //아이디가 없으면 false
+	}
+
 }

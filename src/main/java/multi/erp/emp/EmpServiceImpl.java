@@ -20,6 +20,11 @@ public class EmpServiceImpl implements EmpService {
 		// TODO Auto-generated method stub
 		return dao.getMemeberlist();
 	}
+
+	@Override
+	public boolean idCheck(String id) {
+		return dao.idCheck(id);
+	}
 	
 
 }
