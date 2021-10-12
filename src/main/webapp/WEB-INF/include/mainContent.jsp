@@ -27,14 +27,35 @@
 	$(document).ready(function(){
 		//id속성이 boardCategory로 정의된 li에 익명의 함수를 적용
 		$("#boardCategory>li").each(function(){
-			$(this).click(function(){
-				
+			$(this).click(function(){ //this가 선택한 <li>
+				category = $(this).text();
+				alert("선택됨 : "+category);
 				$("#boardCategory>li").removeAttr("class");//id가 boardCetegory인 컴포넌트의 하위 엘리먼트 li태그의 모든 class속성을 지운다.
 				$(this).attr("class","active");//클릭되는 엘리먼트가 선택되도록
+				//ajax로 BoardController의 메소드를 호출
+				/*
 				
-			})
-		})
-	});
+				$.ajax
+				모든 속성을 json형식으로 넘기기
+				url: Ajax통신하기 위해 요청하는 path
+				type: 요청방식(get or post)
+				data: Ajax요청할때 컨트롤러로 넘길 데이터(category)
+				success: 요청이 성공하고 호출되는 함수
+				
+				*/
+				$.ajax({
+					url:"/erp/board/ajax_list.do",
+					type:"get",
+					data:{"category":category},
+					success:function(data){
+						alert(data);
+						alert(data[0].title)
+						//데이터 전송이 성공하면 어떤 방법으로 뷰를 만들 것인지 명시
+					}
+				})//end ajax
+			})//end click
+		})//end each
+	});//end ready function
 
 </script>
 <title>Insert title here</title>
@@ -100,8 +121,8 @@
 					<div class="panel-footer">사내소식</div>
 					<div class="panel-body">
 						<ul class="nav nav-tabs" id="boardCategory">
-							<li class="active"><a href="#">최근게시판</a></li>
-							<li><a href="#">업무공지</a></li>
+							<li class="active"><a href="#">게시판</a></li>
+							<li><a href="#">사내소식</a></li>
 							<li><a href="#">경조사</a></li>
 						</ul>
 						<div id="boardMain" style="padding-top: 20px; padding-left: 10px">
