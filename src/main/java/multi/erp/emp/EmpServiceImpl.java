@@ -25,6 +25,12 @@ public class EmpServiceImpl implements EmpService {
 	public boolean idCheck(String id) {
 		return dao.idCheck(id);
 	}
+
+	@Override
+	public EmpVO login(EmpVO loginUser) {
+		// TODO Auto-generated method stub
+		return dao.login(loginUser);
+	}
 	
 
 }

@@ -8,6 +8,7 @@ public class EmpVO {
 	private String addr;
 	private int point;
 	private String deptno;
+	
 	public EmpVO() {
 		System.out.println("EmpVo의 기본생성자");
 	}

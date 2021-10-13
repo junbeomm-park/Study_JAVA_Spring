@@ -35,4 +35,16 @@ public class EmpDAOImpl implements EmpDAO {
 		return result; //아이디가 없으면 false
 	}
 
+	@Override
+	public EmpVO login(EmpVO loginUser) {
+		System.out.println("loginUser=>"+loginUser);
+		EmpVO loginOkUser = sqlSession.selectOne("erp.emp.login", loginUser); 
+		System.out.println("결과=>"+loginOkUser);
+		return loginOkUser;
+	}
+	
+
+	
+
+	
 }
