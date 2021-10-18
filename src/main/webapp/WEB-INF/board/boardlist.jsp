@@ -62,7 +62,7 @@
 			%>
 					<tr>
 						<td><%= board.getBoard_no() %></td>
-						<td><%= board.getTitle() %></td>
+						<td><a href="/erp/board/read.do?board_no=<%= board.getBoard_no() %>&state=READ"><%= board.getTitle() %></a></td>
 					
 						<td><%= board.getId() %></td>
 						<td><%= board.getWrite_date() %></td>
